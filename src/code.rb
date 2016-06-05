@@ -6,5 +6,5 @@
 #
 
 def to_roman_numeral(number)
-  'I'
+  'I' * number
 end
