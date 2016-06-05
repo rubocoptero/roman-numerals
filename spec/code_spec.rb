@@ -1,8 +1,8 @@
 require_relative './../src/code'
 
 describe 'Roman Numerals' do
-  it '' do
-    expect(true).to eq(true)
+  it '1 is I' do
+    expect(to_roman_numeral(1)).to eq('I')
   end
 end
 
