@@ -6,6 +6,7 @@
 #
 
 def to_roman_numeral(number)
-  return 'I' * number if number < 5
+  return 'I' * number if number <= 3
+  return 'IV' if number < 5
   return 'V'
 end
