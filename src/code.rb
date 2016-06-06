@@ -4,13 +4,11 @@
 # 1066 = MLXVI
 # 1989 = MCMLXXXIX
 
-
-$max_num_from_I = 3
-
 def to_roman_numeral(number)
   values = {
     'I' => 1,
-    'V' => 5
+    'V' => 5,
+    'X' => 10
   }
 
   main = get_main_roman_numeral_for(number)
@@ -29,4 +27,5 @@ def get_main_roman_numeral_for(number)
 
   return 'I' if number <= max_num_from_I
   return 'V' if number <= max_num_from_V
+  return 'X'
 end
