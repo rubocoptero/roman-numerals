@@ -13,14 +13,22 @@ def to_roman_numeral(number)
 
   main = get_main_roman_numeral_for(number)
   main_value = values[main]
-
-  return 'XV' if number == 15
+  candidate = get_next_to_add(main)
 
   if main_value - number > 0
     ('I' * (main_value - number)) + main
   else
-    main + ('I' * (number - main_value))
+    main + (candidate * ((number - main_value) / values[candidate]))
   end
+end
+
+def get_next_to_add(roman_numeral)
+  symbols = ['I', 'V', 'X']
+  index = symbols.index(roman_numeral)
+
+  return 'I' if index == 0
+
+  symbols[index - 1]
 end
 
 def get_main_roman_numeral_for(number)
