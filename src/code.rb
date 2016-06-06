@@ -4,38 +4,97 @@
 # 1066 = MLXVI
 # 1989 = MCMLXXXIX
 
+# 39 = IXL
+# I have to add the new roman numeral to values, symbols and reach.
+
 def to_roman_numeral(number)
-  values = {
-    'I' => 1,
-    'V' => 5,
-    'X' => 10
-  }
+  result = ''
 
-  main = get_main_roman_numeral_for(number)
-  main_value = values[main]
-  candidate = get_next_to_add(main)
+  root = get_root_roman_numeral_for(number)
 
-  if main_value - number > 0
-    ('I' * (main_value - number)) + main
+  if root.value - number > 0
+    result = ('I' * (root.value - number)) + root
   else
-    main + (candidate * ((number - main_value) / values[candidate]))
+    rest = number - root.value
+
+    result += root
+    result += to_roman_numeral(rest) if rest > 0
+  end
+
+  result
+end
+
+def get_root_roman_numeral_for(number)
+  max_num_from_I = 3
+  max_num_from_V = 8
+  max_num_from_X = 38
+
+  return I.new if number <= max_num_from_I
+  return V.new if number <= max_num_from_V
+  return X.new if number <= max_num_from_X
+  return L.new
+end
+
+class I
+  attr_reader :value
+
+  def initialize
+    @value = 1
+  end
+
+  def to_s
+    'I'
+  end
+
+  def to_str
+    to_s
   end
 end
 
-def get_next_to_add(roman_numeral)
-  symbols = ['I', 'V', 'X']
-  index = symbols.index(roman_numeral)
+class V
+  attr_reader :value
 
-  return 'I' if index == 0
+  def initialize
+    @value = 5
+  end
 
-  symbols[index - 1]
+  def to_s
+    'V'
+  end
+
+  def to_str
+    to_s
+  end
 end
 
-def get_main_roman_numeral_for(number)
-  max_num_from_I = 3
-  max_num_from_V = 8
+class X
+  attr_reader :value
 
-  return 'I' if number <= max_num_from_I
-  return 'V' if number <= max_num_from_V
-  return 'X'
+  def initialize
+    @value = 10
+  end
+
+  def to_s
+    'X'
+  end
+
+  def to_str
+    to_s
+  end
+end
+
+class L
+  attr_reader :value
+
+  def initialize
+    @value = 50
+  end
+
+  def to_s
+    'L'
+  end
+
+  def to_str
+    to_s
+  end
 end

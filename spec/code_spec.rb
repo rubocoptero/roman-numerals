@@ -28,5 +28,13 @@ describe 'Roman Numerals' do
   it '15 is XV' do
     expect(to_roman_numeral(15)).to eq('XV')
   end
+
+  it '18 is XVIII' do
+    expect(to_roman_numeral(18)).to eq('XVIII')
+  end
+
+  xit '39 is IXL' do
+    expect(to_roman_numeral(39)).to eq('IXL')
+  end
 end
 
