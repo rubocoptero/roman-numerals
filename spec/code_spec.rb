@@ -24,5 +24,9 @@ describe 'Roman Numerals' do
   it '9 is IX' do
     expect(to_roman_numeral(9)).to eq('IX')
   end
+
+  it '15 is XV' do
+    expect(to_roman_numeral(15)).to eq('XV')
+  end
 end
 

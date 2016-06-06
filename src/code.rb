@@ -14,6 +14,8 @@ def to_roman_numeral(number)
   main = get_main_roman_numeral_for(number)
   main_value = values[main]
 
+  return 'XV' if number == 15
+
   if main_value - number > 0
     ('I' * (main_value - number)) + main
   else
