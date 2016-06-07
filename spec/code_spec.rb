@@ -44,10 +44,26 @@ describe 'Roman Numerals' do
     expect(to_roman_numeral(42)).to eq('XLII')
   end
 
-  xit '39 is XXXIX' do
+  it '39 is XXXIX' do
     # Skipped because the step was too long
     # Substraction, recursivity and new roman numeral
     expect(to_roman_numeral(39)).to eq('XXXIX')
+  end
+
+  it '48 is XLVIII' do
+    expect(to_roman_numeral(48)).to eq('XLVIII')
+  end
+
+  it '99 is XCIX' do
+    expect(to_roman_numeral(99)).to eq('XCIX')
+  end
+
+  it '1066 is MLXVI' do
+    expect(to_roman_numeral(1066)).to eq('MLXVI')
+  end
+
+  it '1989 is MCMLXXXIX' do
+    expect(to_roman_numeral(1989)).to eq('MCMLXXXIX')
   end
 end
 

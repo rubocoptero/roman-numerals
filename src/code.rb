@@ -1,10 +1,5 @@
-# 1 = I
-# 3 = III
-# 9 = IX
-# 1066 = MLXVI
-# 1989 = MCMLXXXIX
-
-# 39 = IXL
+# Add D
+# Review reachs
 
 def to_roman_numeral(number)
   result = ''
@@ -31,7 +26,7 @@ def to_roman_numeral(number)
 end
 
 def get_root_roman_numeral_for(number)
-  numerals = [I.new, V.new, X.new, L.new]
+  numerals = [I.new, V.new, X.new, L.new, C.new, M.new]
   selected = numerals.select do |numeral|
     number <= numeral.reach
   end
@@ -107,7 +102,7 @@ class X
   end
 
   def reach
-    38
+    39
   end
 end
 
@@ -131,6 +126,54 @@ class L
   end
 
   def reach
-    88
+    89
+  end
+end
+
+class C
+  attr_reader :value
+
+  def initialize
+    @value = 100
+  end
+
+  def to_s
+    'C'
+  end
+
+  def to_str
+    to_s
+  end
+
+  def substraction_candidate
+    X.new
+  end
+
+  def reach
+    399
+  end
+end
+
+class M
+  attr_reader :value
+
+  def initialize
+    @value = 1000
+  end
+
+  def to_s
+    'M'
+  end
+
+  def to_str
+    to_s
+  end
+
+  def substraction_candidate
+    C.new
+  end
+
+  def reach
+    4999
   end
 end
