@@ -5,7 +5,6 @@
 # 1989 = MCMLXXXIX
 
 # 39 = IXL
-# I have to add the new roman numeral to values, symbols and reach.
 
 def to_roman_numeral(number)
   result = ''
@@ -14,6 +13,7 @@ def to_roman_numeral(number)
   if root.value - number > 0
     rest = root.value - number
     candidate = root.substraction_candidate
+
     result = (candidate.to_s * (rest / candidate.value)) + root
   else
     rest = number - root.value
@@ -26,14 +26,12 @@ def to_roman_numeral(number)
 end
 
 def get_root_roman_numeral_for(number)
-  max_num_from_I = 3
-  max_num_from_V = 8
-  max_num_from_X = 38
+  numerals = [I.new, V.new, X.new, L.new]
+  selected = numerals.select do |numeral|
+    number <= numeral.max_can_reach_as_root
+  end
 
-  return I.new if number <= max_num_from_I
-  return V.new if number <= max_num_from_V
-  return X.new if number <= max_num_from_X
-  return L.new
+  selected.first
 end
 
 class I
@@ -53,6 +51,10 @@ class I
 
   def substraction_candidate
     I.new
+  end
+
+  def max_can_reach_as_root
+    3
   end
 end
 
@@ -74,6 +76,10 @@ class V
   def substraction_candidate
     I.new
   end
+
+  def max_can_reach_as_root
+    8
+  end
 end
 
 class X
@@ -94,6 +100,10 @@ class X
   def substraction_candidate
     I.new
   end
+
+  def max_can_reach_as_root
+    38
+  end
 end
 
 class L
@@ -113,5 +123,9 @@ class L
 
   def substraction_candidate
     X.new
+  end
+
+  def max_can_reach_as_root
+    88
   end
 end
