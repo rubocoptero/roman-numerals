@@ -14,7 +14,12 @@ def to_roman_numeral(number)
     rest = root.value - number
     candidate = root.substraction_candidate
 
-    result = (candidate.to_s * (rest / candidate.value)) + root
+    if rest >= candidate.value
+      result = (candidate.to_s * (rest / candidate.value)) + root
+    else
+      result = candidate.to_s + root
+      result = result + to_roman_numeral(candidate.value - rest)
+    end
   else
     rest = number - root.value
 
@@ -28,7 +33,7 @@ end
 def get_root_roman_numeral_for(number)
   numerals = [I.new, V.new, X.new, L.new]
   selected = numerals.select do |numeral|
-    number <= numeral.max_can_reach_as_root
+    number <= numeral.reach
   end
 
   selected.first
@@ -53,7 +58,7 @@ class I
     I.new
   end
 
-  def max_can_reach_as_root
+  def reach
     3
   end
 end
@@ -77,7 +82,7 @@ class V
     I.new
   end
 
-  def max_can_reach_as_root
+  def reach
     8
   end
 end
@@ -101,7 +106,7 @@ class X
     I.new
   end
 
-  def max_can_reach_as_root
+  def reach
     38
   end
 end
@@ -125,7 +130,7 @@ class L
     X.new
   end
 
-  def max_can_reach_as_root
+  def reach
     88
   end
 end

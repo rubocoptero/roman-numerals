@@ -40,10 +40,14 @@ describe 'Roman Numerals' do
     expect(to_roman_numeral(40)).to eq('XL')
   end
 
-  xit '39 is IXL' do
+  it '42 is XLII' do
+    expect(to_roman_numeral(42)).to eq('XLII')
+  end
+
+  xit '39 is XXXIX' do
     # Skipped because the step was too long
     # Substraction, recursivity and new roman numeral
-    expect(to_roman_numeral(39)).to eq('IXL')
+    expect(to_roman_numeral(39)).to eq('XXXIX')
   end
 end
 
