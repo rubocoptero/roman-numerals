@@ -9,11 +9,12 @@
 
 def to_roman_numeral(number)
   result = ''
-
   root = get_root_roman_numeral_for(number)
 
   if root.value - number > 0
-    result = ('I' * (root.value - number)) + root
+    rest = root.value - number
+    result = ('X' * (rest / 10)) + root if rest >= 10
+    result = ('I' * (rest / 1)) + root if rest < 10
   else
     rest = number - root.value
 

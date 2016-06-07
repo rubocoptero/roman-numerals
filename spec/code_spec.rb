@@ -29,11 +29,20 @@ describe 'Roman Numerals' do
     expect(to_roman_numeral(15)).to eq('XV')
   end
 
+  # Tried 39 and too long step
+
   it '18 is XVIII' do
     expect(to_roman_numeral(18)).to eq('XVIII')
   end
 
+  it '40 is XL' do
+    # Remove 'I' constant in substraction
+    expect(to_roman_numeral(40)).to eq('XL')
+  end
+
   xit '39 is IXL' do
+    # Skipped because the step was too long
+    # Substraction, recursivity and new roman numeral
     expect(to_roman_numeral(39)).to eq('IXL')
   end
 end
