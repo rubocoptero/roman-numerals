@@ -13,8 +13,8 @@ def to_roman_numeral(number)
 
   if root.value - number > 0
     rest = root.value - number
-    result = ('X' * (rest / 10)) + root if rest >= 10
-    result = ('I' * (rest / 1)) + root if rest < 10
+    candidate = root.substraction_candidate
+    result = (candidate.to_s * (rest / candidate.value)) + root
   else
     rest = number - root.value
 
@@ -50,6 +50,10 @@ class I
   def to_str
     to_s
   end
+
+  def substraction_candidate
+    I.new
+  end
 end
 
 class V
@@ -65,6 +69,10 @@ class V
 
   def to_str
     to_s
+  end
+
+  def substraction_candidate
+    I.new
   end
 end
 
@@ -82,6 +90,10 @@ class X
   def to_str
     to_s
   end
+
+  def substraction_candidate
+    I.new
+  end
 end
 
 class L
@@ -97,5 +109,9 @@ class L
 
   def to_str
     to_s
+  end
+
+  def substraction_candidate
+    X.new
   end
 end
