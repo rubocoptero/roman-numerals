@@ -4,22 +4,22 @@
 def to_roman_numeral(number)
   result = ''
   root = get_root_roman_numeral_for(number)
+  value = root.value
+
+  return result if number == 0
+
+  rest = (number - value).abs
 
   if root.value - number > 0
-    rest = root.value - number
     candidate = root.substraction_candidate
 
     if rest >= candidate.value
       result = (candidate.to_s * (rest / candidate.value)) + root
     else
-      result = candidate.to_s + root
-      result = result + to_roman_numeral(candidate.value - rest)
+      result = candidate.to_s + root + to_roman_numeral(candidate.value - rest)
     end
   else
-    rest = number - root.value
-
-    result += root
-    result += to_roman_numeral(rest) if rest > 0
+    result = root.to_s + to_roman_numeral(rest)
   end
 
   result
