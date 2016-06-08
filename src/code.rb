@@ -12,13 +12,13 @@ def to_roman_numeral(number)
 
   if root.value - number > 0 # we have to substract
     candidate = root.substraction_candidate
+    value -= candidate.value
+    rest = (number - value).abs
 
-    result = candidate.to_s + root + to_roman_numeral(candidate.value - rest)
-  else
-    result = root.to_s + to_roman_numeral(rest)
+    result = candidate.to_s
   end
 
-  result
+  result + root + to_roman_numeral(rest)
 end
 
 def get_root_roman_numeral_for(number)
