@@ -2,23 +2,47 @@
 # Review reachs
 
 def to_roman_numeral(number)
-  result = ''
+  return '' if number == 0
+
   root = get_root_roman_numeral_for(number)
-  value = root.value
+  roman_numeral = RomanNumeral.new(root)
 
-  return result if number == 0
+  if roman_numeral.value > number
+    roman_numeral.substract
 
-  rest = (number - value).abs
-
-  if root.value - number > 0 # we have to substract
     candidate = root.substraction_candidate
-    value -= candidate.value
-    rest = (number - value).abs
-
-    result = candidate.to_s
   end
 
-  result + root + to_roman_numeral(rest)
+  rest = roman_numeral.rest_to(number)
+  roman_numeral.to_s + to_roman_numeral(rest)
+end
+
+class RomanNumeral
+  attr_reader :value
+
+  def initialize(root)
+    @root = root
+    @numerals = [@root]
+    @value = root.value
+  end
+
+  def substract
+    candidate = @root.substraction_candidate
+    @numerals.unshift(candidate)
+    @value = value - candidate.value
+  end
+
+  def rest_to(number)
+    (number - value).abs
+  end
+
+  def to_s
+    @numerals.map(&:to_s).join
+  end
+
+  def to_str
+    to_s
+  end
 end
 
 def get_root_roman_numeral_for(number)
