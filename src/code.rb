@@ -1,17 +1,10 @@
-# Add D
-# Review reachs
-
 def to_roman_numeral(number)
   return '' if number == 0
 
   root = get_root_roman_numeral_for(number)
   roman_numeral = RomanNumeral.new(root)
 
-  if roman_numeral.value > number
-    roman_numeral.substract
-
-    candidate = root.substraction_candidate
-  end
+  roman_numeral.substract if roman_numeral.value > number
 
   rest = roman_numeral.rest_to(number)
   roman_numeral.to_s + to_roman_numeral(rest)
@@ -171,6 +164,30 @@ class C
 
   def reach
     399
+  end
+end
+
+class D
+  attr_reader :value
+
+  def initialize
+    @value = 500
+  end
+
+  def to_s
+    'D'
+  end
+
+  def to_str
+    to_s
+  end
+
+  def substraction_candidate
+    C.new
+  end
+
+  def reach
+    899
   end
 end
 
